@@ -1,0 +1,48 @@
+buildscript {
+  ext {
+    springBootVersion = '2.0.3.RELEASE'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'application'
+
+mainClassName = 'czegarram.demo.eureka.application.CrmEurekaApplication'
+
+bootJar {
+  baseName = 'eureka'
+  version = '1.0'
+}
+
+
+jar{
+  manifest {
+    attributes 'Main-Class': 'czegarram.demo.eureka.application.CrmEurekaApplication'
+  }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile('org.springframework.cloud:spring-cloud-starter-eureka-server:1.4.5.RELEASE')
+}
+
+dependencyManagement {
+  imports { 
+    mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.RELEASE"
+  }
+}

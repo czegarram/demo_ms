@@ -1,0 +1,29 @@
+/trash
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+gradle/
+gradlew*
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+out/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/

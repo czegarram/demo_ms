@@ -1,0 +1,62 @@
+buildscript {
+  ext {
+    springBootVersion = '2.0.3.RELEASE'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'application'
+
+mainClassName = 'czegarram.demo.opms.application.OpinionesApplication'
+
+bootJar {
+  baseName = 'opiniones-ms'
+  version = '1.0'
+}
+
+
+jar{
+  manifest {
+    attributes 'Main-Class': 'czegarram.demo.opms.application.OpinionesApplication'
+  }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile('org.springframework.boot:spring-boot-starter-web')
+  compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:2.0.1.RELEASE')
+  compile('org.springframework.boot:spring-boot-starter-actuator')
+  compile('io.springfox:springfox-swagger2:2.9.2')
+  compile('io.springfox:springfox-swagger-ui:2.9.2')
+  compile('org.springframework.cloud:spring-cloud-starter-sleuth')
+
+  compile('com.fasterxml.jackson.core:jackson-databind')
+  compile('com.fasterxml.jackson.core:jackson-core')
+  compile('com.fasterxml.jackson.core:jackson-annotations')
+
+  runtime('org.springframework.boot:spring-boot-devtools')
+
+  compileOnly('org.projectlombok:lombok:1.16.18')
+
+  testCompile('org.springframework.boot:spring-boot-starter-test') }
+
+dependencyManagement {
+  imports { 
+    mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.RELEASE"
+  }
+}
